@@ -1,16 +1,17 @@
-"""
-Django settings for your project.
-Add your project-specific settings below.
-"""
 
+# Application definition
 INSTALLED_APPS = [
-    # ...existing apps...
-    'ip_tracking',
+	'ip_tracking',
+	'ratelimit',
 ]
 
+# Middleware definition
 MIDDLEWARE = [
-    # ...existing middleware...
-    'ip_tracking.middleware.IPTrackingMiddleware',
+	'ip_tracking.middleware.IPTrackingMiddleware',
 ]
 
-# ...other settings...
+# django-ratelimit settings
+RATELIMIT_ENABLE = True
+RATELIMIT_VIEW = 'ip_tracking.views.login_view'
+RATELIMIT_RATE = '10/m'
+RATELIMIT_ANONYMOUS_RATE = '5/m'
